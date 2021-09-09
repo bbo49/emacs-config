@@ -39,6 +39,9 @@
 (use-package ein)
 ;; Magit
 (use-package magit)
+(use-package forge)
+(with-eval-after-load 'magit
+  (require 'forge))
 ;; muliple-cursors
 (use-package multiple-cursors)
 ;; When you have an active region that spans multiple lines,
@@ -88,5 +91,23 @@
 ;; Extra modes
 (add-to-list 'auto-mode-alist '("\\.sdc\\'" . tcl-mode))
 (add-to-list 'auto-mode-alist '("\\.cpf\\'" . tcl-mode))
+; Instant auto-complete in all buffers with company mode
 (setq company-idle-delay 0)
 (add-hook 'after-init-hook 'global-company-mode)
+;; Default theme settings
+(load-theme 'leuven t)
+(nyan-mode t)
+;; C++
+(use-package irony)
+(use-package company-irony)
+(use-package flycheck)
+(use-package flycheck-irony)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(require 'company-irony)
+(eval-after-load 'company
+ '(add-to-list 'company-backends 'company-irony))
+(eval-after-load 'flycheck
+                  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
