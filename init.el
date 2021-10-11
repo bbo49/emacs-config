@@ -59,6 +59,8 @@
 (use-package verilog-mode)
 ;; VHDL mode
 (use-package vhdl-mode)
+;; Golden ratio mode
+(use-package golden-ratio)
 ;; Additional Configuration
 ;;===========================
 ;; Use spaces instead of tabs
