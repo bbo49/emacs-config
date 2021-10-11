@@ -111,3 +111,6 @@
  '(add-to-list 'company-backends 'company-irony))
 (eval-after-load 'flycheck
                   '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+;; Disable bell sound
+(setq ring-bell-function 'ignore)
+;; (server-start)
