@@ -25,6 +25,10 @@
 (elpy-enable)
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
+(add-hook 'elpy-mode-hook
+  (lambda ()
+    (local-set-key [f9] 'elpy-format-code)))
+(setq elpy-shell-echo-output nil)
 ;; Python-x-mode
 (use-package python-x)
 (python-x-setup)
@@ -83,6 +87,9 @@
 (add-hook 'inferior-python-mode-hook
         (lambda ()
           (setq python-cell-mode nil)))
+(eval-after-load "elpy"
+  (setq elpy-formatter "black")
+  )
 ;; Disable double buffering as it gives issues on some X11 versions, remote connections
 (setq default-frame-alist
          (append default-frame-alist '((inhibit-double-buffering . t))))
