@@ -37,6 +37,7 @@
 (use-package company-quickhelp)
 ;; EIN Emacs IPython Notebook
 (use-package ein)
+(setq ein:output-area-inlined-images t)
 ;; Magit
 (use-package magit)
 (use-package forge)
