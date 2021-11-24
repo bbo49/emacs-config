@@ -66,6 +66,20 @@
 (use-package vhdl-mode)
 ;; Golden ratio mode
 (use-package golden-ratio)
+;; Projectile
+(use-package projectile
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
+  (projectile-mode +1))
+;; Helm
+(use-package helm
+  :ensure t
+  :config
+  (helm-mode 1)
+  (add-to-list 'helm-completing-read-handlers-alist
+               '(verilog-goto-defun . nil))
+  )
 ;; Additional Configuration
 ;;===========================
 ;; Use spaces instead of tabs
@@ -91,8 +105,8 @@
   (setq elpy-formatter "black")
   )
 ;; Disable double buffering as it gives issues on some X11 versions, remote connections
-(setq default-frame-alist
-         (append default-frame-alist '((inhibit-double-buffering . t))))
+;; (setq default-frame-alist
+;;          (append default-frame-alist '((inhibit-double-buffering . t))))
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
@@ -124,3 +138,13 @@
 ;; Disable bell sound
 (setq ring-bell-function 'ignore)
 ;; (server-start)
+;; Dashboard
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+(setq dashboard-items '((projects . 10)
+                        (recents  . 10)
+                        ))
+(setq dashboard-startup-banner 'logo)
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
