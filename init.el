@@ -127,6 +127,7 @@
 (use-package company-irony)
 (use-package flycheck)
 (use-package flycheck-irony)
+(use-package clang-format)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
@@ -135,7 +136,13 @@
 (eval-after-load 'company
  '(add-to-list 'company-backends 'company-irony))
 (eval-after-load 'flycheck
-                  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+(require 'clang-format)
+(global-set-key (kbd "C-c i") 'clang-format-region)
+(global-set-key (kbd "C-c u") 'clang-format-buffer)
+
+(setq clang-format-style-option "llvm")
+(setq-default clang-format-fallback-style "llvm")
 ;; Disable bell sound
 (setq ring-bell-function 'ignore)
 ;; (server-start)
