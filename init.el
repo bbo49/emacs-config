@@ -71,7 +71,8 @@
   :ensure t
   :config
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
-  (projectile-mode +1))
+  (projectile-mode +1)
+  (setq projectile-switch-project-action #'projectile-dired))
 ;; Helm
 (use-package helm
   :ensure t
