@@ -156,3 +156,9 @@
                         ))
 (setq dashboard-startup-banner 'logo)
 (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+;; which-keys
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 0.3))
