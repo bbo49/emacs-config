@@ -62,6 +62,22 @@
 (use-package realgud-ipdb)
 ;; Verilog mode
 (use-package verilog-mode)
+(setq verilog-indent-level             2
+      verilog-indent-level-module      2
+      verilog-indent-level-declaration 2
+      verilog-indent-level-behavioral  2
+      verilog-indent-level-directive   1
+      verilog-case-indent              2
+      verilog-auto-newline             nil
+      verilog-auto-indent-on-newline   t
+      verilog-tab-always-indent        t
+      verilog-auto-endcomments         t
+      verilog-minimum-comment-distance 1
+      verilog-indent-begin-after-if    t
+      verilog-auto-lineup              'declarations
+      verilog-linter                   "my_lint_shell_command"
+      )
+
 ;; VHDL mode
 (use-package vhdl-mode)
 ;; Golden ratio mode
