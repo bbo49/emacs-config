@@ -182,3 +182,6 @@
 (use-package yaml-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+;; Use plain text mode for file list (.f) files
+(add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
+
