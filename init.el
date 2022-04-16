@@ -178,3 +178,7 @@
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0.3))
+;; yaml
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
