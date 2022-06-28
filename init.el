@@ -132,6 +132,7 @@
 ;; Extra modes
 (add-to-list 'auto-mode-alist '("\\.sdc\\'" . tcl-mode))
 (add-to-list 'auto-mode-alist '("\\.cpf\\'" . tcl-mode))
+(add-to-list 'auto-mode-alist '("\\.upf\\'" . tcl-mode))
 ; Instant auto-complete in all buffers with company mode
 (setq company-idle-delay 0)
 (add-hook 'after-init-hook 'global-company-mode)
