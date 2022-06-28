@@ -185,4 +185,18 @@
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 ;; Use plain text mode for file list (.f) files
 (add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
+;; Language sever mode
+(use-package lsp-mode)
+;; Add verilog mode to lsp
+(require 'lsp-verilog)
+(add-to-list 'lsp-language-id-configuration '(verilog-mode . "verilog"))
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection '("verible-verilog-ls" "--ruleset" "all"))
+                  :major-modes '(verilog-mode)
+                  :server-id 'verible-ls
+                  :add-on? t))
+(custom-set-variables
+  '(lsp-clients-svlangserver-launchConfiguration "verilator -sv --lint-only -Wall")
+  '(lsp-clients-svlangserver-formatCommand "verible-verilog-format"))
+(add-hook 'verilog-mode-hook 'lsp)
 
