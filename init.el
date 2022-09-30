@@ -186,7 +186,11 @@
 ;; Use plain text mode for file list (.f) files
 (add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
 ;; Language sever mode
+(setenv "LSP_USE_PLISTS" "true")
 (use-package lsp-mode)
+(use-package lsp-ui)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq gc-cons-threshold 100000000)
 ;; Add verilog mode to lsp
 (require 'lsp-verilog)
 (add-to-list 'lsp-language-id-configuration '(verilog-mode . "verilog"))
