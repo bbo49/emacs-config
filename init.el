@@ -204,3 +204,6 @@
   '(lsp-clients-svlangserver-formatCommand "verible-verilog-format"))
 (add-hook 'verilog-mode-hook 'lsp)
 
+(add-hook 'verilog-mode-hook
+  (lambda ()
+    (local-set-key [f9] 'lsp-format-buffer)))
