@@ -185,6 +185,8 @@
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 ;; Use plain text mode for file list (.f) files
 (add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 ;; Language sever mode
 (setenv "LSP_USE_PLISTS" "true")
 (use-package lsp-mode)
