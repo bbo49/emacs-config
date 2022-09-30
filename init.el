@@ -209,3 +209,7 @@
 (add-hook 'verilog-mode-hook
   (lambda ()
     (local-set-key [f9] 'lsp-format-buffer)))
+;; Add regex for verilator
+(add-to-list 'compilation-error-regexp-alist 'verilator-message)
+(add-to-list 'compilation-error-regexp-alist-alist '(verilator-message "%\\(Error\\|Warning\\)-\\([A-Z0-9_]+\\): \\([^:]*\\):\\([0-9]*\\):\\([0-9]*\\):" 3 4 5 1 3))
+(delete 'verilog-verilator compilation-error-regexp-alist)
