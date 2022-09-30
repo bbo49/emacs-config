@@ -215,3 +215,5 @@
 (delete 'verilog-verilator compilation-error-regexp-alist)
 ;; Disable killing text if region is not active
 (setq mark-even-if-inactive nil)
+;; Source Code Navigation
+(use-package ggtags)
