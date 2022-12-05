@@ -217,3 +217,7 @@
 (setq mark-even-if-inactive nil)
 ;; Source Code Navigation
 (use-package ggtags)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+        ))
+(yas-reload-all)

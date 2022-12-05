@@ -1,0 +1,29 @@
+# key: fsm
+# name: fsm
+# expand-env: ((yas-indent-line 'fixed))
+# --
+typedef enum {
+  $1, $2
+} $3state_e;
+
+$3state_e $3state_d, $3state_q;
+
+always_ff @(posedge ${4:clk_i}, negedge ${5:rst_ni}) begin
+  if (!$5) begin
+    $3state_q <= $1;
+  end else begin
+    $3state_q <= $3state_d;
+  end
+end
+
+always_comb begin
+  $3state_d = $3state_q;
+  case ($3state_q)
+    $1: begin
+      $0
+    end
+    default: begin
+      // Defaults set on top
+    end
+  endcase
+end

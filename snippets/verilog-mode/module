@@ -1,0 +1,13 @@
+# key: module
+# name: module
+# expand-env: ((yas-indent-line 'fixed))
+# --
+module $1
+#(
+) (
+  input  logic clk_i,
+  input  logic rst_ni,
+  $0
+);
+
+endmodule  // $1

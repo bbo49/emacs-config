@@ -1,0 +1,10 @@
+# key: alwaysff
+# name: always_ff synchronous reset
+# --
+always_ff @(posedge ${1:clk_i}, negedge ${2:rst_ni}) begin
+  if (!$2) begin
+    $3
+  end else begin
+    $3
+  end
+end
