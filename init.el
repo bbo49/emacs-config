@@ -5,7 +5,7 @@
 (require 'package)
 ;; Adds the Melpa archive to the list of available repositories
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 ;; Initializes the package infrastructure
 (package-initialize)
 ;; If there are no archived package contents, refresh them
