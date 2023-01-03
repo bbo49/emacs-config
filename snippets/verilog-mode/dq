@@ -1,0 +1,5 @@
+# key: dq
+# name: define register d and q signals
+# expand-env: ((yas-indent-line 'fixed))
+# --
+${1:logic} $2_d, $2_q;
