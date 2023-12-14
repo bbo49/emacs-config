@@ -21,13 +21,15 @@
 ;; Install some packages
 ;;=======================
 ;; ELPY
+(use-package poetry)
 (use-package elpy)
 (elpy-enable)
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
 (add-hook 'elpy-mode-hook
   (lambda ()
-    (local-set-key [f9] 'elpy-format-code)))
+    (local-set-key [f9] 'elpy-format-code))
+  (poetry-tracking-mode))
 (setq elpy-shell-echo-output nil)
 ;; Python-x-mode
 (use-package python-x)
