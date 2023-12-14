@@ -199,7 +199,7 @@
 (require 'lsp-verilog)
 (add-to-list 'lsp-language-id-configuration '(verilog-mode . "verilog"))
 (lsp-register-client
- (make-lsp-client :new-connection (lsp-stdio-connection '("verible-verilog-ls" "--ruleset" "all"))
+ (make-lsp-client :new-connection (lsp-stdio-connection '("verible-verilog-ls" "--ruleset" "all" "--wrap_spaces" "2" "--column_limit" "100" "--port_declarations_alignment" "align" "--named_parameter_alignment" "align" "--named_port_alignment" "align"))
                   :major-modes '(verilog-mode)
                   :server-id 'verible-ls
                   :add-on? t))
