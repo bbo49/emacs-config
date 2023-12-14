@@ -223,3 +223,8 @@
 (yas-reload-all)
 (put 'dired-find-alternate-file 'disabled nil)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+;; Helm Projectile
+(use-package helm-projectile)
+(use-package helm-swoop)
+(use-package helm-ag)
+(helm-projectile-on)
