@@ -222,3 +222,4 @@
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")                 ;; personal snippets
 (yas-reload-all)
 (put 'dired-find-alternate-file 'disabled nil)
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
