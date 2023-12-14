@@ -206,7 +206,7 @@
 (custom-set-variables
   '(lsp-clients-svlangserver-launchConfiguration "verilator -sv --lint-only -Wall")
   '(lsp-clients-svlangserver-formatCommand "verible-verilog-format"))
-(add-hook 'verilog-mode-hook 'lsp)
+;; (add-hook 'verilog-mode-hook 'lsp)
 
 (add-hook 'verilog-mode-hook
   (lambda ()
