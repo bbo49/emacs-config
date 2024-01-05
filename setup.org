@@ -82,6 +82,13 @@ Group buffers in a perspective, very handy when switching between multiple proje
 (global-set-key (kbd "C-x C-b") 'persp-ibuffer)
 #+end_src
 
+** RealGUD
+An extensible, modular GNU Emacs front-end for interacting with external debuggers.
+#+begin_src elisp
+(use-package realgud)
+(use-package realgud-ipdb)
+#+end_src
+
 ** YASnippet
 A templating system for emacs.
 #+begin_example elisp
@@ -320,9 +327,6 @@ Enable yas snippets.
 
 * Unorganized
 #+begin_src elisp
-;; RealGUD debugger
-(use-package realgud)
-(use-package realgud-ipdb)
 ;; Additional Configuration
 ;;===========================
 ;; Use spaces instead of tabs
