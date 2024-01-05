@@ -66,6 +66,13 @@ Use projectile for project management and navigation.
   (projectile-mode +1)
   (setq projectile-switch-project-action #'magit-status))
 #+end_src
+** Magit
+#+begin_src elisp
+(use-package magit)
+(use-package forge)
+(with-eval-after-load 'magit
+  (require 'forge))
+#+end_src
 
 * Unorganized
 #+begin_src elisp
@@ -73,11 +80,6 @@ Use projectile for project management and navigation.
 (use-package nyan-mode)
 ;; Quickhelp mode
 (use-package company-quickhelp)
-;; Magit
-(use-package magit)
-(use-package forge)
-(with-eval-after-load 'magit
-  (require 'forge))
 ;; muliple-cursors
 (use-package multiple-cursors)
 ;; When you have an active region that spans multiple lines,
