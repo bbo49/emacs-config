@@ -41,6 +41,16 @@ Group buffers in a perspective, very handy when switching between multiple proje
 (global-set-key (kbd "C-x C-b") 'persp-ibuffer)
 #+end_src
 
+** Which key
+Shows help for the current key sequence being entered.
+#+begin_src elisp
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 0.3))
+#+end_src
+
 * Themes
 ** Nyan
 Use Nyan cat to indicate position in buffer.
@@ -294,12 +304,6 @@ Enable yas snippets.
 ;; Disable bell sound
 (setq ring-bell-function 'ignore)
 ;; (server-start)
-;; which-keys
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 0.3))
 (use-package company-box
   :hook (company-mode . company-box-mode))
 ;; Language sever mode
