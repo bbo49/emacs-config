@@ -46,6 +46,14 @@ Extra helm plugins
 (use-package helm-ag)
 #+end_src
 
+** LSP
+#+begin_src elisp
+(setenv "LSP_USE_PLISTS" "true")
+(use-package lsp-mode)
+(use-package lsp-ui)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+#+end_src
+
 ** Multiple cursors
 Make modifications in a file with multiple cursors at the same time.
 #+begin_src elisp
@@ -327,11 +335,6 @@ Enable yas snippets.
 ;; Disable bell sound
 (setq ring-bell-function 'ignore)
 ;; (server-start)
-;; Language sever mode
-(setenv "LSP_USE_PLISTS" "true")
-(use-package lsp-mode)
-(use-package lsp-ui)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
 (setq gc-cons-threshold 100000000)
 ;; Disable killing text if region is not active
 (setq mark-even-if-inactive nil)
