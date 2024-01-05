@@ -230,6 +230,7 @@
 (use-package helm-ag)
 (helm-projectile-on)
 ;; Perspective el
+(global-set-key (kbd "C-x C-b") 'persp-ibuffer)
 (use-package perspective
   :bind
   ("C-x C-b" . persp-ibuffer)         ; or use a nicer switcher, see below
