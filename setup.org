@@ -15,6 +15,14 @@ Extra helm plugins
 (use-package helm-swoop)
 (use-package helm-ag)
 #+end_src
+
+* Themes
+** Nyan
+Use Nyan cat to indicate position in buffer.
+#+begin_src elisp
+(use-package nyan-mode)
+(nyan-mode t)
+#+end_src
 * Python
 ** Elpy
 Basic Elpy setup, provides code navigation, formatting, completion, ...
@@ -99,8 +107,6 @@ Use helm for projectile autocompletion
 
 * Unorganized
 #+begin_src elisp
-;; NYAN Mode
-(use-package nyan-mode)
 ;; Quickhelp mode
 (use-package company-quickhelp)
 ;; muliple-cursors
@@ -164,7 +170,6 @@ Use helm for projectile autocompletion
 (add-hook 'after-init-hook 'global-company-mode)
 ;; Default theme settings
 (load-theme 'leuven t)
-(nyan-mode t)
 ;; C++
 (use-package irony)
 (use-package company-irony)
