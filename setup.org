@@ -1,4 +1,22 @@
 * Utilities
+** Company
+Enable completion in all modes, show completions without any delay.
+#+begin_src elisp
+(setq company-idle-delay 0)
+(add-hook 'after-init-hook 'global-company-mode)
+#+end_src
+
+Extra plugins for company mode.
+#+begin_src elisp
+;; Icons for completion candidates
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+;; Better documentation viewing
+(use-package company-quickhelp
+  :config
+  (setq company-quickhelp-mode 1))
+#+end_src
+
 ** Ggtags
 Better frontend for gtags based source code navigation compared to gtags-mode.
 #+begin_src elisp
@@ -285,8 +303,6 @@ Enable yas snippets.
 
 * Unorganized
 #+begin_src elisp
-;; Quickhelp mode
-(use-package company-quickhelp)
 ;; RealGUD debugger
 (use-package realgud)
 (use-package realgud-ipdb)
@@ -307,15 +323,10 @@ Enable yas snippets.
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
-; Instant auto-complete in all buffers with company mode
-(setq company-idle-delay 0)
-(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Disable bell sound
 (setq ring-bell-function 'ignore)
 ;; (server-start)
-(use-package company-box
-  :hook (company-mode . company-box-mode))
 ;; Language sever mode
 (setenv "LSP_USE_PLISTS" "true")
 (use-package lsp-mode)
