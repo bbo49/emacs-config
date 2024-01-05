@@ -147,6 +147,31 @@ Automatically track a project's python environment if it uses poetry
   (poetry-tracking-mode))
 #+end_src
 
+* C(++)
+** Irony
+#+begin_src elisp
+(use-package irony)
+(use-package company-irony)
+(use-package flycheck)
+(use-package flycheck-irony)
+(use-package clang-format)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(require 'company-irony)
+(eval-after-load 'company
+ '(add-to-list 'company-backends 'company-irony))
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+(require 'clang-format)
+(global-set-key (kbd "C-c i") 'clang-format-region)
+(global-set-key (kbd "C-c u") 'clang-format-buffer)
+
+(setq clang-format-style-option "llvm")
+(setq-default clang-format-fallback-style "llvm")
+#+end_src
+
 * Project Management
 ** Projectile
 Use projectile for project management and navigation.
@@ -285,27 +310,7 @@ Enable yas snippets.
 ; Instant auto-complete in all buffers with company mode
 (setq company-idle-delay 0)
 (add-hook 'after-init-hook 'global-company-mode)
-;; C++
-(use-package irony)
-(use-package company-irony)
-(use-package flycheck)
-(use-package flycheck-irony)
-(use-package clang-format)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(require 'company-irony)
-(eval-after-load 'company
- '(add-to-list 'company-backends 'company-irony))
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-(require 'clang-format)
-(global-set-key (kbd "C-c i") 'clang-format-region)
-(global-set-key (kbd "C-c u") 'clang-format-buffer)
 
-(setq clang-format-style-option "llvm")
-(setq-default clang-format-fallback-style "llvm")
 ;; Disable bell sound
 (setq ring-bell-function 'ignore)
 ;; (server-start)
