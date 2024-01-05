@@ -233,7 +233,7 @@
 (global-set-key (kbd "C-x C-b") 'persp-ibuffer)
 (use-package perspective
   :bind
-  ("C-x C-b" . persp-ibuffer)         ; or use a nicer switcher, see below
+  ("C-x b" . 'helm-buffers-list)         ; or use a nicer switcher, see below
   :custom
   (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
   :init
