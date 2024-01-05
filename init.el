@@ -221,6 +221,7 @@
 (use-package ggtags)
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")                 ;; personal snippets
 (yas-reload-all)
+(add-hook 'verilog-mode-hook 'yas-minor-mode)
 (put 'dired-find-alternate-file 'disabled nil)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 ;; Helm Projectile
