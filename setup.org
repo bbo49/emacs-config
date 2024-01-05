@@ -1,3 +1,20 @@
+* Utilities
+** Helm
+Helm is a autocompletion framework for various commands and actions.
+#+begin_src elisp
+(use-package helm
+  :ensure t
+  :config
+  (helm-mode 1)
+  (add-to-list 'helm-completing-read-handlers-alist
+               '(verilog-goto-defun . nil))
+  )
+#+end_src
+Extra helm plugins
+#+begin_src elisp
+(use-package helm-swoop)
+(use-package helm-ag)
+#+end_src
 * Python
 ** Elpy
 Basic Elpy setup, provides code navigation, formatting, completion, ...
@@ -66,6 +83,12 @@ Use projectile for project management and navigation.
   (projectile-mode +1)
   (setq projectile-switch-project-action #'magit-status))
 #+end_src
+Use helm for projectile autocompletion
+#+begin_src elisp
+(use-package helm-projectile)
+(helm-projectile-on)
+#+end_src
+
 ** Magit
 #+begin_src elisp
 (use-package magit)
@@ -115,14 +138,6 @@ Use projectile for project management and navigation.
 (use-package vhdl-mode)
 ;; Golden ratio mode
 (use-package golden-ratio)
-;; Helm
-(use-package helm
-  :ensure t
-  :config
-  (helm-mode 1)
-  (add-to-list 'helm-completing-read-handlers-alist
-               '(verilog-goto-defun . nil))
-  )
 ;; Additional Configuration
 ;;===========================
 ;; Use spaces instead of tabs
@@ -233,11 +248,6 @@ Use projectile for project management and navigation.
 (add-hook 'verilog-mode-hook 'yas-minor-mode)
 (put 'dired-find-alternate-file 'disabled nil)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-;; Helm Projectile
-(use-package helm-projectile)
-(use-package helm-swoop)
-(use-package helm-ag)
-(helm-projectile-on)
 ;; Perspective el
 (global-set-key (kbd "C-x C-b") 'persp-ibuffer)
 (use-package perspective
