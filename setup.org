@@ -27,6 +27,19 @@ Use Nyan cat to indicate position in buffer.
 #+begin_src elisp
 (load-theme 'leuven t)
 #+end_src
+** Dashboard
+#+begin_src elisp
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+(setq dashboard-items '((projects . 10)
+                        (recents  . 10)
+                        ))
+(setq dashboard-startup-banner 'logo)
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+#+end_src
+
 * Python
 ** Elpy
 Basic Elpy setup, provides code navigation, formatting, completion, ...
@@ -196,16 +209,6 @@ Use helm for projectile autocompletion
 ;; Disable bell sound
 (setq ring-bell-function 'ignore)
 ;; (server-start)
-;; Dashboard
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
-(setq dashboard-items '((projects . 10)
-                        (recents  . 10)
-                        ))
-(setq dashboard-startup-banner 'logo)
-(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 ;; which-keys
 (use-package which-key
   :init (which-key-mode)
