@@ -55,6 +55,18 @@ Automatically track a project's python environment if it uses poetry
   (poetry-tracking-mode))
 #+end_src
 
+* Project Management
+** Projectile
+Use projectile for project management and navigation.
+#+begin_src elisp
+(use-package projectile
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
+  (projectile-mode +1)
+  (setq projectile-switch-project-action #'magit-status))
+#+end_src
+
 * Unorganized
 #+begin_src elisp
 ;; NYAN Mode
@@ -101,13 +113,6 @@ Automatically track a project's python environment if it uses poetry
 (use-package vhdl-mode)
 ;; Golden ratio mode
 (use-package golden-ratio)
-;; Projectile
-(use-package projectile
-  :ensure t
-  :config
-  (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
-  (projectile-mode +1)
-  (setq projectile-switch-project-action #'magit-status))
 ;; Helm
 (use-package helm
   :ensure t
