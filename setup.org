@@ -28,6 +28,21 @@ Extra helm plugins
 (use-package helm-ag)
 #+end_src
 
+** Multiple cursors
+Make modifications in a file with multiple cursors at the same time.
+#+begin_src elisp
+;; muliple-cursors
+(use-package multiple-cursors)
+;; When you have an active region that spans multiple lines,
+;; the following will add a cursor to each line:
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+;; When you want to add multiple cursors not based on continuous
+;; lines, but based on keywords in the buffer, use:
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+#+end_src
+
 ** Perspective
 Group buffers in a perspective, very handy when switching between multiple projects.
 #+begin_src elisp
@@ -247,16 +262,6 @@ Enable yas snippets.
 #+begin_src elisp
 ;; Quickhelp mode
 (use-package company-quickhelp)
-;; muliple-cursors
-(use-package multiple-cursors)
-;; When you have an active region that spans multiple lines,
-;; the following will add a cursor to each line:
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-;; When you want to add multiple cursors not based on continuous
-;; lines, but based on keywords in the buffer, use:
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 ;; RealGUD debugger
 (use-package realgud)
 (use-package realgud-ipdb)
