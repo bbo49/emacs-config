@@ -1,4 +1,10 @@
 * Utilities
+** Ggtags
+Better frontend for gtags based source code navigation compared to gtags-mode.
+#+begin_src elisp
+(use-package ggtags)
+#+end_src
+
 ** Golden ratio
 Resize windows according to the golden ratio, current active window is the largest.
 #+begin_src elisp
@@ -21,11 +27,7 @@ Extra helm plugins
 (use-package helm-swoop)
 (use-package helm-ag)
 #+end_src
-** Golden ratio
-Resize windows according to the golden ratio, current active window is the largest.
-#+begin_src elisp
-(use-package golden-ratio)
-#+end_src
+
 ** Perspective
 Group buffers in a perspective, very handy when switching between multiple projects.
 #+begin_src elisp
@@ -308,8 +310,6 @@ Enable yas snippets.
 (setq gc-cons-threshold 100000000)
 ;; Disable killing text if region is not active
 (setq mark-even-if-inactive nil)
-;; Source Code Navigation
-(use-package ggtags)
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")                 ;; personal snippets
 (yas-reload-all)
 (put 'dired-find-alternate-file 'disabled nil)
