@@ -1,23 +1,4 @@
 #+begin_src elisp
-;; ===================================
-;; MELPA Package Support
-;; ===================================
-;; Enables basic packaging support
-(require 'package)
-;; Adds the Melpa archive to the list of available repositories
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-;; Initializes the package infrastructure
-(package-initialize)
-;; If there are no archived package contents, refresh them
-(when (not package-archive-contents)
-  (package-refresh-contents))
-;; Auto package install support
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-(setq use-package-always-ensure t)
 ;;=======================
 ;; Install some packages
 ;;=======================
@@ -109,10 +90,6 @@
 (setq custom-file "~/.emacs_custom")
 (load custom-file 'noerror)
 
-;; Disable menu bar
-;; (menu-bar-mode -1)
-;; Disable scroll bar
-(toggle-scroll-bar -1) 
 ;; Use simple ipython proment
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "--simple-prompt -i")
