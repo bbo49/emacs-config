@@ -140,6 +140,84 @@ Use helm for projectile autocompletion
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+end_src
+* Digital Design
+** Additional file extensions
+A lot of EDA tools use tcl-based files for design constraints.
+#+begin_src elisp
+(add-to-list 'auto-mode-alist '("\\.sdc\\'" . tcl-mode))
+(add-to-list 'auto-mode-alist '("\\.cpf\\'" . tcl-mode))
+(add-to-list 'auto-mode-alist '("\\.upf\\'" . tcl-mode))
+#+end_src
+
+** File Lists
+Use plain text mode for file list (.f) files.
+#+begin_src elisp
+(add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
+#+end_src
+
+** Verilator
+Update the regex for compilation mode for verilator.
+#+begin_src elisp
+;; Add regex for verilator
+(add-to-list 'compilation-error-regexp-alist 'verilator-message)
+(add-to-list 'compilation-error-regexp-alist-alist '(verilator-message "%\\(Error\\|Warning\\)-\\([A-Z0-9_]+\\): \\([^:]*\\):\\([0-9]*\\):\\([0-9]*\\):" 3 4 5 1 3))
+(delete 'verilog-verilator compilation-error-regexp-alist)
+#+end_src
+
+** Verilog
+Setup formatting formatting style for verilog-mode.
+#+begin_src elisp
+(use-package verilog-mode)
+(setq verilog-indent-level             2
+      verilog-indent-level-module      2
+      verilog-indent-level-declaration 2
+      verilog-indent-level-behavioral  2
+      verilog-indent-level-directive   1
+      verilog-case-indent              2
+      verilog-auto-newline             nil
+      verilog-auto-indent-on-newline   t
+      verilog-tab-always-indent        t
+      verilog-auto-endcomments         t
+      verilog-minimum-comment-distance 1
+      verilog-indent-begin-after-if    t
+      verilog-auto-lineup              'declarations
+      verilog-linter                   "my_lint_shell_command"
+      )
+#+end_src
+
+Configure LSP Servers for verilog mode.
+#+begin_src elisp
+(require 'lsp-verilog)
+(add-to-list 'lsp-language-id-configuration '(verilog-mode . "verilog"))
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection '("verible-verilog-ls" "--ruleset" "all" "--wrap_spaces" "2" "--column_limit" "100" "--port_declarations_alignment" "align" "--named_parameter_alignment" "align" "--named_port_alignment" "align"))
+                  :major-modes '(verilog-mode)
+                  :server-id 'verible-ls
+                  :add-on? t))
+(custom-set-variables
+  '(lsp-clients-svlangserver-launchConfiguration "verilator -sv --lint-only -Wall")
+  '(lsp-clients-svlangserver-formatCommand "verible-verilog-format --inplace "))
+;; Auto enable the language server when opening a verilog file.
+;; Disable it for now, it loads quite slow when just viewing a verilog file.
+;; (add-hook 'verilog-mode-hook 'lsp)
+#+end_src
+
+Add quick shortkey for formatting file using lsp mode.
+#+begin_src elisp
+(add-hook 'verilog-mode-hook
+  (lambda ()
+    (local-set-key [f9] 'lsp-format-buffer)))
+#+end_src
+
+Enable yas snippets.
+#+begin_src elisp
+(add-hook 'verilog-mode-hook 'yas-minor-mode)
+#+end_src
+
+** VHDL
+#+begin_src elisp
+(use-package vhdl-mode)
+#+end_src
 
 * Unorganized
 #+begin_src elisp
@@ -158,26 +236,6 @@ Use helm for projectile autocompletion
 ;; RealGUD debugger
 (use-package realgud)
 (use-package realgud-ipdb)
-;; Verilog mode
-(use-package verilog-mode)
-(setq verilog-indent-level             2
-      verilog-indent-level-module      2
-      verilog-indent-level-declaration 2
-      verilog-indent-level-behavioral  2
-      verilog-indent-level-directive   1
-      verilog-case-indent              2
-      verilog-auto-newline             nil
-      verilog-auto-indent-on-newline   t
-      verilog-tab-always-indent        t
-      verilog-auto-endcomments         t
-      verilog-minimum-comment-distance 1
-      verilog-indent-begin-after-if    t
-      verilog-auto-lineup              'declarations
-      verilog-linter                   "my_lint_shell_command"
-      )
-
-;; VHDL mode
-(use-package vhdl-mode)
 ;; Additional Configuration
 ;;===========================
 ;; Use spaces instead of tabs
@@ -195,10 +253,6 @@ Use helm for projectile autocompletion
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
-;; Extra modes
-(add-to-list 'auto-mode-alist '("\\.sdc\\'" . tcl-mode))
-(add-to-list 'auto-mode-alist '("\\.cpf\\'" . tcl-mode))
-(add-to-list 'auto-mode-alist '("\\.upf\\'" . tcl-mode))
 ; Instant auto-complete in all buffers with company mode
 (setq company-idle-delay 0)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -232,8 +286,6 @@ Use helm for projectile autocompletion
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0.3))
-;; Use plain text mode for file list (.f) files
-(add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
 (use-package company-box
   :hook (company-mode . company-box-mode))
 ;; Language sever mode
@@ -242,33 +294,12 @@ Use helm for projectile autocompletion
 (use-package lsp-ui)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 (setq gc-cons-threshold 100000000)
-;; Add verilog mode to lsp
-(require 'lsp-verilog)
-(add-to-list 'lsp-language-id-configuration '(verilog-mode . "verilog"))
-(lsp-register-client
- (make-lsp-client :new-connection (lsp-stdio-connection '("verible-verilog-ls" "--ruleset" "all" "--wrap_spaces" "2" "--column_limit" "100" "--port_declarations_alignment" "align" "--named_parameter_alignment" "align" "--named_port_alignment" "align"))
-                  :major-modes '(verilog-mode)
-                  :server-id 'verible-ls
-                  :add-on? t))
-(custom-set-variables
-  '(lsp-clients-svlangserver-launchConfiguration "verilator -sv --lint-only -Wall")
-  '(lsp-clients-svlangserver-formatCommand "verible-verilog-format --inplace "))
-;; (add-hook 'verilog-mode-hook 'lsp)
-
-(add-hook 'verilog-mode-hook
-  (lambda ()
-    (local-set-key [f9] 'lsp-format-buffer)))
-;; Add regex for verilator
-(add-to-list 'compilation-error-regexp-alist 'verilator-message)
-(add-to-list 'compilation-error-regexp-alist-alist '(verilator-message "%\\(Error\\|Warning\\)-\\([A-Z0-9_]+\\): \\([^:]*\\):\\([0-9]*\\):\\([0-9]*\\):" 3 4 5 1 3))
-(delete 'verilog-verilator compilation-error-regexp-alist)
 ;; Disable killing text if region is not active
 (setq mark-even-if-inactive nil)
 ;; Source Code Navigation
 (use-package ggtags)
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")                 ;; personal snippets
 (yas-reload-all)
-(add-hook 'verilog-mode-hook 'yas-minor-mode)
 (put 'dired-find-alternate-file 'disabled nil)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 ;; Perspective el
