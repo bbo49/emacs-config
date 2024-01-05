@@ -23,6 +23,10 @@ Use Nyan cat to indicate position in buffer.
 (use-package nyan-mode)
 (nyan-mode t)
 #+end_src
+** Leuven
+#+begin_src elisp
+(load-theme 'leuven t)
+#+end_src
 * Python
 ** Elpy
 Basic Elpy setup, provides code navigation, formatting, completion, ...
@@ -168,8 +172,6 @@ Use helm for projectile autocompletion
 ; Instant auto-complete in all buffers with company mode
 (setq company-idle-delay 0)
 (add-hook 'after-init-hook 'global-company-mode)
-;; Default theme settings
-(load-theme 'leuven t)
 ;; C++
 (use-package irony)
 (use-package company-irony)
