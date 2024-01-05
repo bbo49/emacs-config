@@ -1,3 +1,42 @@
+* Defaults
+** Dired
+#+begin_src elisp
+;; Enable the 'a' command, to open a file/folder in the same buffer.
+;; This avoids excessive amount of buffers to be created.
+(put 'dired-find-alternate-file 'disabled nil)
+#+end_src
+
+** General Defaults
+#+begin_src elisp
+;; Use spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
+;; scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
+;; Disable bell sound
+(setq ring-bell-function 'ignore)
+
+;; Disable killing text if region is not active
+(setq mark-even-if-inactive nil)
+
+;; Put custom variables in separate file
+(setq custom-file "~/.emacs_custom")
+(load custom-file 'noerror)
+
+;; Set gargbage collection threshold to 100MB
+(setq gc-cons-threshold 100000000)
+#+end_src
+
+** Tramp
+#+begin_src elisp
+(require 'tramp)
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+#+end_src
+
 * Utilities
 ** Company
 Enable completion in all modes, show completions without any delay.
@@ -329,28 +368,10 @@ Enable yas snippets.
 #+begin_src elisp
 ;; Additional Configuration
 ;;===========================
-;; Use spaces instead of tabs
-(setq-default indent-tabs-mode nil)
-
-;; Put custom variables in separate file
-(setq custom-file "~/.emacs_custom")
-(load custom-file 'noerror)
 
 ;; Disable double buffering as it gives issues on some X11 versions, remote connections
 ;; (setq default-frame-alist
 ;;          (append default-frame-alist '((inhibit-double-buffering . t))))
-;; scroll one line at a time (less "jumpy" than defaults)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
 
-;; Disable bell sound
-(setq ring-bell-function 'ignore)
 ;; (server-start)
-(setq gc-cons-threshold 100000000)
-;; Disable killing text if region is not active
-(setq mark-even-if-inactive nil)
-(put 'dired-find-alternate-file 'disabled nil)
-(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 #+end_src
