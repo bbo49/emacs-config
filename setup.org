@@ -1,4 +1,10 @@
 * Utilities
+** Golden ratio
+Resize windows according to the golden ratio, current active window is the largest.
+#+begin_src elisp
+(use-package golden-ratio)
+#+end_src
+
 ** Helm
 Helm is a autocompletion framework for various commands and actions.
 #+begin_src elisp
@@ -14,6 +20,11 @@ Extra helm plugins
 #+begin_src elisp
 (use-package helm-swoop)
 (use-package helm-ag)
+#+end_src
+** Golden ratio
+Resize windows according to the golden ratio, current active window is the largest.
+#+begin_src elisp
+(use-package golden-ratio)
 #+end_src
 
 * Themes
@@ -167,8 +178,6 @@ Use helm for projectile autocompletion
 
 ;; VHDL mode
 (use-package vhdl-mode)
-;; Golden ratio mode
-(use-package golden-ratio)
 ;; Additional Configuration
 ;;===========================
 ;; Use spaces instead of tabs
