@@ -82,6 +82,15 @@ Group buffers in a perspective, very handy when switching between multiple proje
 (global-set-key (kbd "C-x C-b") 'persp-ibuffer)
 #+end_src
 
+** YASnippet
+A templating system for emacs.
+#+begin_example elisp
+(use-package yasnippet)
+;; personal snippets
+(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
+(yas-reload-all)
+#+end_example
+
 ** Which key
 Shows help for the current key sequence being entered.
 #+begin_src elisp
@@ -338,8 +347,6 @@ Enable yas snippets.
 (setq gc-cons-threshold 100000000)
 ;; Disable killing text if region is not active
 (setq mark-even-if-inactive nil)
-(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")                 ;; personal snippets
-(yas-reload-all)
 (put 'dired-find-alternate-file 'disabled nil)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 #+end_src
