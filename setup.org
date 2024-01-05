@@ -26,6 +26,18 @@ Resize windows according to the golden ratio, current active window is the large
 #+begin_src elisp
 (use-package golden-ratio)
 #+end_src
+** Perspective
+Group buffers in a perspective, very handy when switching between multiple projects.
+#+begin_src elisp
+(use-package perspective
+  :bind
+  ("C-x b" . 'helm-buffers-list)         ; or use a nicer switcher, see below
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
+  :init
+  (persp-mode))
+(global-set-key (kbd "C-x C-b") 'persp-ibuffer)
+#+end_src
 
 * Themes
 ** Nyan
@@ -302,13 +314,4 @@ Enable yas snippets.
 (yas-reload-all)
 (put 'dired-find-alternate-file 'disabled nil)
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-;; Perspective el
-(global-set-key (kbd "C-x C-b") 'persp-ibuffer)
-(use-package perspective
-  :bind
-  ("C-x b" . 'helm-buffers-list)         ; or use a nicer switcher, see below
-  :custom
-  (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
-  :init
-  (persp-mode))
 #+end_src
