@@ -1,31 +1,66 @@
+* Python
+** Elpy
+Basic Elpy setup, provides code navigation, formatting, completion, ...
 #+begin_src elisp
-;;=======================
-;; Install some packages
-;;=======================
-;; ELPY
-(use-package poetry)
 (use-package elpy)
 (elpy-enable)
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "-i --simple-prompt")
+(eval-after-load "elpy"
+  (setq elpy-formatter "black")
+  )
+#+end_src
+Add quick shortkey for formatting file with black
+#+begin_example elisp
 (add-hook 'elpy-mode-hook
   (lambda ()
     (local-set-key [f9] 'elpy-format-code))
   (poetry-tracking-mode))
+#+end_example
+Do not echo shell output, usefull when an interactive evaluation prints a lot of text.
+#+begin_src elisp
 (setq elpy-shell-echo-output nil)
-;; Python-x-mode
+#+end_src
+
+** Interactive Shell
+Use IPython for interactive python scripting
+#+begin_src elisp
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
+#+end_src
+
+Additional packages for interactive python sessions
+#+begin_src elisp
 (use-package python-x)
 (python-x-setup)
 (define-key python-mode-map (kbd "M-<return>") nil)
-;; Python-cell-mode
 (use-package python-cell)
+(add-hook 'inferior-python-mode-hook
+  (lambda () (setq python-cell-mode nil)))
+#+end_src
+
+** Notebooks
+Emacs Ipython Notebooks to access jupyter notebooks inside emacs.
+#+begin_src elisp
+(use-package ein)
+(setq ein:output-area-inlined-images t)
+#+end_src
+
+** Poetry
+Poetry wrapper for executing poetry commands from within emacs.
+#+begin_src elisp
+(use-package poetry)
+#+end_src
+Automatically track a project's python environment if it uses poetry
+#+begin_src elisp
+(add-hook 'elpy-mode-hook
+  (poetry-tracking-mode))
+#+end_src
+
+* Unorganized
+#+begin_src elisp
 ;; NYAN Mode
 (use-package nyan-mode)
 ;; Quickhelp mode
 (use-package company-quickhelp)
-;; EIN Emacs IPython Notebook
-(use-package ein)
-(setq ein:output-area-inlined-images t)
 ;; Magit
 (use-package magit)
 (use-package forge)
@@ -90,16 +125,6 @@
 (setq custom-file "~/.emacs_custom")
 (load custom-file 'noerror)
 
-;; Use simple ipython proment
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "--simple-prompt -i")
-;; Disble python cell mode in python buffer
-(add-hook 'inferior-python-mode-hook
-        (lambda ()
-          (setq python-cell-mode nil)))
-(eval-after-load "elpy"
-  (setq elpy-formatter "black")
-  )
 ;; Disable double buffering as it gives issues on some X11 versions, remote connections
 ;; (setq default-frame-alist
 ;;          (append default-frame-alist '((inhibit-double-buffering . t))))
