@@ -122,6 +122,14 @@ Use helm for projectile autocompletion
   (require 'forge))
 #+end_src
 
+* Additional modes
+** YAML
+#+begin_src yaml
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+#+end_src
+
 * Unorganized
 #+begin_src elisp
 ;; Quickhelp mode
@@ -215,10 +223,6 @@ Use helm for projectile autocompletion
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0.3))
-;; yaml
-(use-package yaml-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 ;; Use plain text mode for file list (.f) files
 (add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
 (use-package company-box
