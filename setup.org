@@ -185,8 +185,7 @@ Add quick shortkey for formatting file with black
 #+begin_src elisp
 (add-hook 'elpy-mode-hook
   (lambda ()
-    (local-set-key [f9] 'elpy-format-code))
-  (poetry-tracking-mode))
+    (local-set-key [f9] 'elpy-format-code)))
 #+end_src
 Do not echo shell output, usefull when an interactive evaluation prints a lot of text.
 #+begin_src elisp
