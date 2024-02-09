@@ -130,12 +130,12 @@ An extensible, modular GNU Emacs front-end for interacting with external debugge
 
 ** YASnippet
 A templating system for emacs.
-#+begin_example elisp
+#+begin_src elisp
 (use-package yasnippet)
 ;; personal snippets
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
 (yas-reload-all)
-#+end_example
+#+end_src
 
 ** Which key
 Shows help for the current key sequence being entered.
@@ -182,12 +182,12 @@ Basic Elpy setup, provides code navigation, formatting, completion, ...
   )
 #+end_src
 Add quick shortkey for formatting file with black
-#+begin_example elisp
+#+begin_src elisp
 (add-hook 'elpy-mode-hook
   (lambda ()
     (local-set-key [f9] 'elpy-format-code))
   (poetry-tracking-mode))
-#+end_example
+#+end_src
 Do not echo shell output, usefull when an interactive evaluation prints a lot of text.
 #+begin_src elisp
 (setq elpy-shell-echo-output nil)
