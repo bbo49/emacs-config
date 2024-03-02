@@ -147,6 +147,10 @@ Shows help for the current key sequence being entered.
   (setq which-key-idle-delay 0.3))
 #+end_src
 
+** Wavedrom
+#+begin_src elisp
+(use-package wavedrom-mode)
+#+end_src
 * Themes
 ** Nyan
 Use Nyan cat to indicate position in buffer.
