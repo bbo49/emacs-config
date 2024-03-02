@@ -1,7 +1,6 @@
 ;; Disable gui elements
-(when window-system
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; Don't show startup message
 (setq inhibit-startup-message t)
