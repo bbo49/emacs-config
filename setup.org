@@ -137,6 +137,34 @@ A templating system for emacs.
 (yas-reload-all)
 #+end_src
 
+** verilog-ext
+Improvements for the built-in verilog-mode.
+#+begin_src elisp
+(use-package verilog-ext)
+(setq verilog-ext-feature-list
+      '(font-lock
+        xref
+        capf
+        hierarchy
+        eglot
+        lsp
+        flycheck
+        beautify
+        navigation
+        template
+        formatter
+        compilation
+        imenu
+        which-func
+        hideshow
+        typedefs
+        time-stamp
+        block-end-comments
+        ports))
+(require 'verilog-ext)
+(verilog-ext-mode-setup)
+(add-hook 'verilog-mode-hook #'verilog-ext-mode)
+#+end_src
 ** Which key
 Shows help for the current key sequence being entered.
 #+begin_src elisp
