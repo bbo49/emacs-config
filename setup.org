@@ -56,6 +56,38 @@ Extra plugins for company mode.
   (setq company-quickhelp-mode 1))
 #+end_src
 
+** DAP
+#+begin_src elisp
+(use-package dape)
+(add-to-list 'dape-configs
+ `(debugpy-remote-attach
+   modes (python-mode python-ts-mode)
+   host (lambda () (read-string "Host: " "localhost"))
+   port (lambda () (read-number "Port: "))
+   :request "attach"
+   :type "python"
+   :pathMappings [(:localRoot (lambda ()
+                                (read-directory-name "Local source directory: "
+                                                     (funcall dape-cwd-fn)))
+                   :remoteRoot (lambda ()
+                                 (read-string "Remote source directory: ")))]
+   :justMyCode nil
+   :showReturnValue t))
+#+end_src
+dap-mode. Currently disabled in favour of dape.
+#+begin_src elisp
+  ;; (use-package dap-mode
+  ;;   :after lsp-mode
+  ;;   :commands dap-debug
+  ;;   :hook ((python-mode . dap-ui-mode) (python-mode . dap-mode))
+  ;;   :config
+  ;;   (require 'dap-python)
+  ;;   (setq dap-python-debugger 'debugpy)
+  ;;   (defun dap-python--pyenv-executable-find (command)
+  ;;     (with-venv (executable-find "python")))
+  ;;   (add-hook 'dap-stopped-hook
+  ;;             (lambda (arg) (call-interactively #'dap-hydra))))
+#+end_src
 ** Ggtags
 Better frontend for gtags based source code navigation compared to gtags-mode.
 #+begin_src elisp
