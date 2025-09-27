@@ -1,0 +1,7 @@
+# key: clk_rst_i
+# name: Declare clk_i and rst_ni port mappings
+# expand-env: ((yas-indent-line 'fixed))
+# --
+.clk_i(clk_i),
+.rst_i(rst_i),
+$0
