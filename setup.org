@@ -189,6 +189,7 @@ A templating system for emacs.
 ;; personal snippets
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
 (yas-reload-all)
+(define-key yas-minor-mode-map (kbd "s-<tab>") 'yas-expand)
 #+end_src
 
 ** verilog-ext
