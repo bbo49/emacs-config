@@ -1,0 +1,7 @@
+# key: moduletb
+# name: module-tb-mag
+# expand-env: ((yas-indent-line 'fixed))
+# --
+module ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`};
+  $0
+endmodule : $1
