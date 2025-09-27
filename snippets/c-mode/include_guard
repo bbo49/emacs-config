@@ -1,0 +1,8 @@
+# key: guard
+# name: c-header-guard
+# expand-env: ((yas-indent-line 'fixed) (yas-template-file-name (replace-in-string "-" "_" (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))))
+# --
+#ifndef __`(upcase yas-template-file-name)`_H_
+#define __`(upcase yas-template-file-name)`_H_
+$0
+#endif
