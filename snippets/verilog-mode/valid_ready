@@ -1,0 +1,6 @@
+# key: vr
+# name: define register valid and ready signals
+# expand-env: ((yas-indent-line 'fixed))
+# --
+logic $1_valid;
+logic $1_ready;$0
