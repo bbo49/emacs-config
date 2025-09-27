@@ -1,0 +1,7 @@
+# key: package
+# name: package
+# expand-env: ((yas-indent-line 'fixed))
+# --
+package ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`};
+  $0
+endpackage  // $1
