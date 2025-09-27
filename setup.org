@@ -314,6 +314,12 @@ Automatically track a project's python environment if it uses poetry
   (poetry-tracking-mode))
 #+end_src
 
+** LSP Mode
+#+begin_src elisp
+(use-package lsp-pyright
+  :ensure t
+  :custom (lsp-pyright-langserver-command "basedpyright"))
+#+end_src
 * C(++)
 ** Irony
 #+begin_src elisp
