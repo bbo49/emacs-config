@@ -72,19 +72,23 @@ Extra plugins for company mode.
 #+begin_src elisp
 (use-package dape)
 (add-to-list 'dape-configs
- `(debugpy-remote-attach
-   modes (python-mode python-ts-mode)
-   host (lambda () (read-string "Host: " "localhost"))
-   port (lambda () (read-number "Port: "))
-   :request "attach"
-   :type "python"
-   :pathMappings [(:localRoot (lambda ()
-                                (read-directory-name "Local source directory: "
-                                                     (funcall dape-cwd-fn)))
-                   :remoteRoot (lambda ()
-                                 (read-string "Remote source directory: ")))]
-   :justMyCode nil
-   :showReturnValue t))
+'(debugpy-remote-attach modes
+                        (python-mode python-ts-mode)
+                        command ""
+                        command-cwd
+                        (projectile-project-root)
+                        host "localhost" :type "python" :request "attach" :justMyCode nil :showReturnValue t
+                        prefix-local
+                        (projectile-project-root)
+                        prefix-remote
+                        (projectile-project-root)
+                        fn
+                        my-debugpy-path-mappings
+                        ))
+(defun my-debugpy-path-mappings (config)
+  (plist-put config :pathMappings (vector (list :localRoot (plist-get config 'prefix-local)
+                                                :remoteRoot (plist-get config 'prefix-remote))))
+)
 #+end_src
 dap-mode. Currently disabled in favour of dape.
 #+begin_src elisp
