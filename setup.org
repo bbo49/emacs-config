@@ -44,6 +44,12 @@
 (global-set-key [f7] (lambda () (interactive) (xref-clear-marker-stack)))
 #+end_src
 * Utilities
+** Browse at remote
+Generate upstream GitHub URLs for a given file,commit,selection
+
+#+begin_src elisp
+(use-package browse-at-remote)
+#+end_src
 ** Company
 Enable completion in all modes, show completions without any delay.
 #+begin_src elisp
