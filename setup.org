@@ -365,6 +365,7 @@ Use helm for projectile autocompletion
 ** Magit
 #+begin_src elisp
 (use-package magit)
+(use-package magit-tbdiff)
 (use-package forge)
 (with-eval-after-load 'magit
   (require 'forge))
