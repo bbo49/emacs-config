@@ -1,5 +1,5 @@
 # key: module
-# name: module
+# name: module-mag
 # expand-env: ((yas-indent-line 'fixed))
 # --
 module ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}
