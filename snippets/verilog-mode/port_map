@@ -1,0 +1,6 @@
+# key: .pm
+# name: Port map a signal with same port and signal name
+# expand-env: ((yas-indent-line 'fixed))
+# --
+.$1($1),
+$0
