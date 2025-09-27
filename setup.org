@@ -29,6 +29,8 @@
 
 ;; Set gargbage collection threshold to 100MB
 (setq gc-cons-threshold 100000000)
+;; Formatting fill column
+(setq-default fill-column 100)
 #+end_src
 
 ** Tramp
