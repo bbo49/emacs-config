@@ -142,6 +142,11 @@ Extra helm plugins
 (setq backup-by-copying t)
 #+end_src
 
+** Move Text
+#+begin_src elisp
+(use-package move-text)
+(move-text-default-bindings)
+#+end_src
 ** Multiple cursors
 Make modifications in a file with multiple cursors at the same time.
 #+begin_src elisp
