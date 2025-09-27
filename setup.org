@@ -139,6 +139,7 @@ Extra helm plugins
 (use-package lsp-mode)
 (use-package lsp-ui)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq backup-by-copying t)
 #+end_src
 
 ** Multiple cursors
