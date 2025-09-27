@@ -369,6 +369,9 @@ Use helm for projectile autocompletion
 (use-package forge)
 (with-eval-after-load 'magit
   (require 'forge))
+
+;; Add Dutch gpg password prompt regexp
+(add-to-list 'magit-process-password-prompt-regexps "^Voer wachtwoordzin in: $")
 #+end_src
 
 * Additional modes
