@@ -1,0 +1,5 @@
+# key: q=d
+# name: Assign d to q (Blocking)
+# expand-env: ((yas-indent-line 'fixed))
+# --
+$1_q = $1_d;
